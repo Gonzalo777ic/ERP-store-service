@@ -1,5 +1,6 @@
 package com.valeerp.store.service.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,6 +22,9 @@ import java.util.stream.Collectors;
 @EnableWebSecurity
 public class SecurityConfig {
     private static final String ROLES_CLAIM = "https://valeerp.local/roles";
+
+    @Value("${valeerp.cors.allowed-origin-patterns}")
+    private String allowedOriginPatterns;
 
 
     @Bean
@@ -72,7 +76,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:4000", "http://localhost:8081", "http://localhost:8080", "http://localhost:8082"));
+        configuration.setAllowedOriginPatterns(List.of(allowedOriginPatterns.split(",")).stream()
+                .map(String::trim)
+                .filter(pattern -> !pattern.isEmpty())
+                .toList());
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT","PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
