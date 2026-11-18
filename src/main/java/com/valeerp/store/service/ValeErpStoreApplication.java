@@ -10,9 +10,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
-@SpringBootApplication(scanBasePackages = {"com.valeerp.store.service", "com.valeerp"})
-@EntityScan(basePackages = {"com.valeerp.store.service", "com.valeerp"})
-@EnableJpaRepositories(basePackages = {"com.valeerp.store.service", "com.valeerp"})
+@SpringBootApplication(scanBasePackages = "com.valeerp")
+@EntityScan(basePackages = "com.valeerp")
+@EnableJpaRepositories(basePackages = "com.valeerp")
 @EnableConfigurationProperties({
         LedgerProperties.class,
         PartnerProperties.class,
