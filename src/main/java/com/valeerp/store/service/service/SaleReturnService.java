@@ -91,7 +91,8 @@ public class SaleReturnService {
                         .toList()
         );
         if (saleReturn.getSale().getAccountsReceivable() != null) {
-            saleReturn.getSale().getAccountsReceivable().applyCredit(saleReturn.getTotalRefundAmount());
+            saleReturn.getSale().getAccountsReceivable().applyCredit(
+                    Money.of(saleReturn.getTotalRefundAmount(), saleReturn.getSale().getAccountsReceivable().getCurrencyCode()));
         }
         SalesDocument creditNote = salesDocumentService.issueCreditNote(
                 saleReturn.getSale().getId(),

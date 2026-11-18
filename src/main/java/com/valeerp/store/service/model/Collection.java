@@ -52,7 +52,7 @@ public class Collection {
     private BigDecimal amount;
 
     @Column(name = "currency_code", nullable = false, length = 3)
-    private String currencyCode = SalesPolicy.DEFAULT_CURRENCY;
+    private String currencyCode = SalesPolicy.DEFAULT_CURRENCY.code();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "payment_method_id", nullable = false)
@@ -120,7 +120,7 @@ public class Collection {
             this.collectionDate = LocalDateTime.now();
         }
         if (this.currencyCode == null || this.currencyCode.isBlank()) {
-            this.currencyCode = SalesPolicy.DEFAULT_CURRENCY;
+            this.currencyCode = SalesPolicy.DEFAULT_CURRENCY.code();
         }
     }
 

@@ -182,10 +182,10 @@ public class CashMovement {
         if (collection.getPaymentMethod() == null) {
             throw new DomainException("La cobranza exige método de pago");
         }
-        if (collection.getAmount() == null || collection.getAmount() <= 0) {
+        if (collection.getAmount() == null || collection.getAmount().signum() <= 0) {
             throw new DomainException("El monto del cobro debe ser positivo");
         }
-        Money money = Money.of(BigDecimal.valueOf(collection.getAmount()), TreasuryPolicy.DEFAULT_CURRENCY);
+        Money money = Money.of(collection.getAmount(), TreasuryPolicy.DEFAULT_CURRENCY.code());
         Instant resolved = when == null ? Instant.now() : when;
         CashMovement movement = record(
                 CashMovementType.INCOME,

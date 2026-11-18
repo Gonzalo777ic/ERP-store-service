@@ -52,7 +52,7 @@ public final class Discount {
 
     public Money applyTo(Money base) {
         if (isNone() || base == null || base.isZero()) {
-            return Money.zero(base == null ? SalesPolicy.DEFAULT_CURRENCY : base.currency());
+            return Money.zero(base == null ? SalesPolicy.DEFAULT_CURRENCY.code() : base.currency());
         }
         Money raw = switch (kind) {
             case PERCENT -> base.times(percentRatio());

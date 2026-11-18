@@ -97,7 +97,7 @@ public class CollectionController {
         if (sale.getStatus() == SaleStatus.CANCELADA) {
             throw new DomainException("No se puede registrar cobros en una venta CANCELADA");
         }
-        String currency = ar.getCurrencyCode() == null ? SalesPolicy.DEFAULT_CURRENCY : ar.getCurrencyCode();
+        String currency = ar.getCurrencyCode() == null ? SalesPolicy.DEFAULT_CURRENCY.code() : ar.getCurrencyCode();
         Collection collection = Collection.confirm(
                 sale,
                 ar,

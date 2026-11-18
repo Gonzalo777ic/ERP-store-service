@@ -90,7 +90,7 @@ public class CatalogPromotionService {
 
     private static String resolveCurrency(String raw) {
         if (raw == null || raw.isBlank()) {
-            return SalesPolicy.DEFAULT_CURRENCY;
+            return SalesPolicy.DEFAULT_CURRENCY.code();
         }
         return Currency.of(raw).code();
     }

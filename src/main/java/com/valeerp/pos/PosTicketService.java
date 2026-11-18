@@ -85,7 +85,7 @@ public class PosTicketService {
                 request.quantity(),
                 unitPrice,
                 taxRate.getId(),
-                BigDecimal.valueOf(taxRate.getRate())
+                taxRate.getRate()
         );
         return ticketRepository.save(ticket);
     }

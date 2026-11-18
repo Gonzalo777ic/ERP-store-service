@@ -198,7 +198,7 @@ public class Installment {
     }
 
     private String currency() {
-        return accountsReceivable == null ? com.valeerp.sales.SalesPolicy.DEFAULT_CURRENCY : accountsReceivable.getCurrencyCode();
+        return accountsReceivable == null ? com.valeerp.sales.SalesPolicy.DEFAULT_CURRENCY.code() : accountsReceivable.getCurrencyCode();
     }
 
     public Long getId() {

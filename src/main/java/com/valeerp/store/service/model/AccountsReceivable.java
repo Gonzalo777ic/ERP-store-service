@@ -45,7 +45,7 @@ public class AccountsReceivable {
     private BigDecimal totalAmount;
 
     @Column(name = "currency_code", nullable = false, length = 3)
-    private String currencyCode = SalesPolicy.DEFAULT_CURRENCY;
+    private String currencyCode = SalesPolicy.DEFAULT_CURRENCY.code();
 
     @OneToMany(mappedBy = "accountsReceivable", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Installment> installments = new ArrayList<>();

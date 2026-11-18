@@ -68,6 +68,11 @@ public class CustomerOrderService {
                 0,
                 storeSellerId,
                 1,
+                null,
+                null,
+                null,
+                null,
+                null,
                 lines.stream().map(line -> new RegisterSale.Line(line.productId(), line.quantity(), taxRateId, null)).toList()
         ));
         return saved;

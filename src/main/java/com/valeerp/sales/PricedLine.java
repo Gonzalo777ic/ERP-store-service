@@ -103,7 +103,7 @@ public record PricedLine(
             case SalesPolicy.PROMOTION_FIXED ->
                     Money.of(discountValue.multiply(BigDecimal.valueOf(quantity)), unitPrice.currency());
             case SalesPolicy.PROMOTION_THREE_FOR_TWO -> unitPrice.times(quantity / 3);
-            case SalesPolicy.PROMOTION_TWO_FOR_ONE, "2X1", "DOS_POR_UNO" -> unitPrice.times(quantity / 2);
+            case SalesPolicy.PROMOTION_TWO_FOR_ONE, "2X1" -> unitPrice.times(quantity / 2);
             default -> Money.zero(unitPrice.currency());
         };
     }
