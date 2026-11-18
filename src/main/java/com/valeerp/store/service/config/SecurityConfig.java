@@ -3,6 +3,7 @@ package com.valeerp.store.service.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -37,6 +38,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/store/sales/**", "/api/store/promotions/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_VENDOR")
                         .requestMatchers("/api/store/quotations/client/**", "/api/store/sales/client/**").hasAnyAuthority("ROLE_CLIENT", "ROLE_ADMIN", "ROLE_VENDOR")
+                        .requestMatchers(HttpMethod.GET, "/api/store/complaints/catalog").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/store/complaints").permitAll()
+                        .requestMatchers("/api/store/complaints", "/api/store/complaints/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_SELLER", "ROLE_VENDOR")
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
