@@ -36,7 +36,7 @@ public class ChartAccountService {
         requireCompanyId(companyId);
         ChartAccount parent = require(parentId);
         ensureSameCompany(parent, companyId);
-        return chartAccountRepository.findByCompanyIdAndParentId(companyId, parentId);
+        return chartAccountRepository.findByCompanyIdAndParent_Id(companyId, parentId);
     }
 
     public ChartAccount require(Long id) {

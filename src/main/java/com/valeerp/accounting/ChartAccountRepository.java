@@ -13,7 +13,7 @@ public interface ChartAccountRepository extends JpaRepository<ChartAccount, Long
 
     Page<ChartAccount> findByCompanyIdAndParentIsNull(Long companyId, Pageable pageable);
 
-    List<ChartAccount> findByCompanyIdAndParentId(Long companyId, Long parentId);
+    List<ChartAccount> findByCompanyIdAndParent_Id(Long companyId, Long parentId);
 
     Optional<ChartAccount> findByCompanyIdAndCode(Long companyId, String code);
 
